@@ -49,6 +49,38 @@ def print_spots(spots: list):
     for spot in spots:
         print(spot)
 
+def filter_by_name(spots: list, name: str) -> list:
+    """
+    이름으로 parking_spot 클래스 객체의 리스트 필터링
+    """
+    return [spot for spot in spots if name in spot.get('name')]
+
+def filter_by_city(spots: list, city: str) -> list:
+    """
+    시도로 parking_spot 클래스 객체의 리스트 필터링
+    """
+    return [spot for spot in spots if city in spot.get('city')]
+
+def filter_by_district(spots: list, district: str) -> list:
+    """
+    시군구로 parking_spot 클래스 객체의 리스트 필터링
+    """
+    return [spot for spot in spots if district in spot.get('district')]
+
+def filter_by_ptype(spots: list, ptype: str) -> list:
+    """
+    주차장 유형으로 parking_spot 클래스 객체의 리스트 필터링
+    """
+    return [spot for spot in spots if ptype in spot.get('ptype')]
+
+def filter_by_location(spots: list, locations: tuple) -> list:
+    """
+    최대, 최소 위도, 경도 범위로 parking_spot 클래스 객체의 리스트 필터링
+    """
+    min_lat, max_lat, min_long, max_long = locations
+    return [spot for spot in spots if min_lat < spot.get('latitude') < max_lat and min_long < spot.get('longitude') < max_long]
+
+
 
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
 if __name__ == '__main__':
