@@ -1,4 +1,10 @@
+from file_manager import read_file
+from parking_spot_manager import str_list_to_class_list, print_spots
+
 def start_process(path):
+    str_list = read_file(path)
+    spots = str_list_to_class_list(str_list)
+    
     while True:
         print("---menu---")
         print("[1] print")
@@ -7,8 +13,8 @@ def start_process(path):
         print("[4] exit")
         select = int(input('type:'))
         if select == 1:
-            print("not implemented yet")
-            # fill this block
+            print_spots(spots)
+
         elif select == 2:
             print("---filter by---")
             print("[1] name")
@@ -42,6 +48,7 @@ def start_process(path):
                 # fill this block
             else:
                 print("invalid input")
+
         elif select == 3:
             keywords = ['name', 'city', 'district', 'ptype', 'latitude', 'longitude']
             print("---sort by---")
@@ -51,8 +58,10 @@ def start_process(path):
                 print("not implemented yet")
                 # fill this block
             else: print("invalid input")
+
         elif select == 4:
-            print("not implemented yet")
-            # fill this block
+            print("Exit")
+            break
+
         else:
             print("invalid input")

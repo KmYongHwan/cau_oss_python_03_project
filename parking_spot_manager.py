@@ -1,5 +1,28 @@
 class parking_spot:
-    # you have to implement 'constructor(생성자)' and 'get' method
+    """
+    주차장 정보를 저장하는 클래스
+
+    name : 주차장 이름 (str)
+    city : 주자창이 있는 시도 (str)
+    district : 주차장이 있는 시군구 (str)
+    ptype : 주차장 유형 (str)
+    longitude : 경도 (float)
+    latitude : 위도 (float)
+    """
+    #constructor(생성자)
+    def __init__(self, name, city, district, ptype, longitude, latitude):
+        self.__item = {}
+        self.__item['name'] = name
+        self.__item['city'] = city
+        self.__item['district'] = district
+        self.__item['ptype'] = ptype
+        self.__item['longitude'] = float(longitude)
+        self.__item['latitude'] = float(latitude)
+    
+    #get method
+    def get(self, keyword = 'name'):
+        return self.__item[keyword]
+
     def __str__(self):
         item = self.__item
         s  = f"[{item['name']}({item['ptype']})] "
@@ -7,15 +30,34 @@ class parking_spot:
         s += f"(lat:{item['latitude']}, long:{item['longitude']})"
         return s
 
+def str_list_to_class_list(str_list: list):
+    """
+    문자열 리스트를 parking_spot 클래스 객체의 리스트로 변환
+    """
+    list = []
+    for parking in str_list:
+        _, name, city, district, ptype, longitude, latitude = parking.split(',')
+        list.append(parking_spot(name, city, district, ptype, longitude, latitude))
+
+    return list
+
+def print_spots(spots: list):
+    """
+    주차장 정보 출력
+    """
+    print(f"---print elements({len(spots)})---")
+    for spot in spots:
+        print(spot)
+
 
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
 if __name__ == '__main__':
     print("Testing the module...")
     # version#2
-    # import file_manager
-    # str_list = file_manager.from_file("./input/free_parking_spot_seoul.csv")
-    # spots = str_list_to_class_list(str_list)
-    # print_spots(spots)
+    #import file_manager
+    #str_list = file_manager.read_file("./input/free_parking_spot_seoul.csv")
+    #spots = str_list_to_class_list(str_list)
+    #print_spots(spots)
 
     # version#3
     # spots = filter_by_district(spots, '동작')
