@@ -49,36 +49,42 @@ def print_spots(spots: list):
     for spot in spots:
         print(spot)
 
-def filter_by_name(spots: list, name: str) -> list:
+def filter_by_name(spots: list, name: str):
     """
     이름으로 parking_spot 클래스 객체의 리스트 필터링
     """
     return [spot for spot in spots if name in spot.get('name')]
 
-def filter_by_city(spots: list, city: str) -> list:
+def filter_by_city(spots: list, city: str):
     """
     시도로 parking_spot 클래스 객체의 리스트 필터링
     """
     return [spot for spot in spots if city in spot.get('city')]
 
-def filter_by_district(spots: list, district: str) -> list:
+def filter_by_district(spots: list, district: str):
     """
     시군구로 parking_spot 클래스 객체의 리스트 필터링
     """
     return [spot for spot in spots if district in spot.get('district')]
 
-def filter_by_ptype(spots: list, ptype: str) -> list:
+def filter_by_ptype(spots: list, ptype: str):
     """
     주차장 유형으로 parking_spot 클래스 객체의 리스트 필터링
     """
     return [spot for spot in spots if ptype in spot.get('ptype')]
 
-def filter_by_location(spots: list, locations: tuple) -> list:
+def filter_by_location(spots: list, locations: tuple):
     """
     최대, 최소 위도, 경도 범위로 parking_spot 클래스 객체의 리스트 필터링
     """
     min_lat, max_lat, min_long, max_long = locations
     return [spot for spot in spots if min_lat < spot.get('latitude') < max_lat and min_long < spot.get('longitude') < max_long]
+
+def sort_by_keyword(spots: list, keyword: str):
+    """
+    keyword로 parking_spot 클래스 객체의 리스트를 정렬하여 새로운 리스트로 정렬
+    """
+    return sorted(spots, key = lambda spot: spot.get(keyword))
 
 
 
